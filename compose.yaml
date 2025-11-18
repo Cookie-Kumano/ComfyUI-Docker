@@ -1,0 +1,37 @@
+services:
+  comfyui:
+    build: .
+    command: >
+      /bin/bash -c "
+        if [ ! -f '/ComfyUI/.venv/.installed' ]; then
+          python3 -m venv /ComfyUI/.venv;
+          source /ComfyUI/.venv/bin/activate;
+          
+          pip install -r requirements.txt;
+          pip install -r custom_nodes/ComfyUI-Manager/requirements.txt;
+          touch /ComfyUI/.venv/.installed
+        fi;
+        
+        source /ComfyUI/.venv/bin/activate;
+        exec python3 main.py --listen;
+        "
+    ports:
+      - "8188:8188"
+    volumes:
+      - ${MODELS}:/ComfyUI/models
+      - ${INPUT}:/ComfyUI/input
+      - ${OUTPUT}:/ComfyUI/output
+      - ${CUSTOM_WILDCARDS}:/ComfyUI/custom_nodes/comfyui-impact-pack/custom_wildcards/
+      - comfyui_custom_nodes:/ComfyUI/custom_nodes
+      - comfyui_venv:/ComfyUI/.venv
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: ["gpu"]
+    runtime: nvidia
+volumes:
+  comfyui_custom_nodes:
+  comfyui_venv:

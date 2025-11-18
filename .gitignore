@@ -1,0 +1,6 @@
+**/.env
+custom_wildcards/**
+input/**
+models/**
+output/**
+!**/.gitkeep
