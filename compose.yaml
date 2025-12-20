@@ -13,7 +13,7 @@ services:
         fi;
         
         source /ComfyUI/.venv/bin/activate;
-        exec python3 main.py --listen;
+        exec python3 main.py --lowvram --listen;
         "
     ports:
       - "8188:8188"
