@@ -1,7 +1,6 @@
-FROM nvcr.io/nvidia/pytorch:25.10-py3
+FROM nvcr.io/nvidia/pytorch:25.11-py3
 
 WORKDIR /ComfyUI
-
 
 RUN apt-get update && \
     apt-get install -y libgl1 && \
