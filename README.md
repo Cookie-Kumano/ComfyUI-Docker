@@ -2,9 +2,11 @@
 
 ## 前提
 
+依存関係をアレするために CUDA 12.8 で止めようとしている
+
 - NVIDIA が刺さった適当なディストリ（WSL2 環境を想定）
 - Docker が入っている
-- [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) が設定済みである
+- [NVIDIA Container Toolkit 12.8](https://developer.nvidia.com/cuda-12-8-1-download-archive) が設定済みである
   - 以下も実行済みである:
     ```shell
     sudo nvidia-ctk runtime configure --runtime=docker
@@ -26,6 +28,7 @@
 | INPUT | ComfyUI の `input` ディレクトリにマウントされる。 |
 | OUTPUT | ComfyUI の `output` ディレクトリにマウントされる。 <br/> 生成された画像はこのディレクトリに吐き出されるということ。 |
 | CUSTOM_WILDCARDS | ComfyUI Impact Pack の Impact Wildcard を想定したもの。 <br/> `custom_nodes/comfyui-impact-pack/custom_wildcards` にマウントされ、ワイルドカードファイルを配置できる。 |
+| TORCH_CUDA_ARCH_LIST |  `SageAttention` のビルドに使う環境変数。 <br/> Blackwell なら `9`, RTX 4000 シリーズなら `8.9`,  RTX 3000 シリーズなら `8.6`, RTX 2000 シリーズなら `7.5` といった具合に設定。 |
 
 ## 実行
 

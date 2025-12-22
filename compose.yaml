@@ -1,12 +1,14 @@
 services:
   comfyui:
-    build: .
+    build: 
+      context: .
+      args:
+        TORCH_CUDA_ARCH_LIST: ${TORCH_CUDA_ARCH_LIST}
     command: >
       /bin/bash -c "
         if [ ! -f '/ComfyUI/.venv/.installed' ]; then
           python3 -m venv /ComfyUI/.venv;
-          source /ComfyUI/.venv/bin/activate;
-          
+          source /ComfyUI/.venv/bin/activate;           
           pip install -r requirements.txt;
           pip install -r custom_nodes/ComfyUI-Manager/requirements.txt;
           touch /ComfyUI/.venv/.installed
@@ -21,7 +23,7 @@ services:
       - ${MODELS}:/ComfyUI/models
       - ${INPUT}:/ComfyUI/input
       - ${OUTPUT}:/ComfyUI/output
-      - ${CUSTOM_WILDCARDS}:/ComfyUI/custom_nodes/comfyui-impact-pack/custom_wildcards/
+      - ${CUSTOM_WILDCARDS}:/ComfyUI/custom_nodes/ComfyUI-Impact-Pack/custom_wildcards
       - comfyui_custom_nodes:/ComfyUI/custom_nodes
       - comfyui_venv:/ComfyUI/.venv
     deploy:
