@@ -27,6 +27,7 @@
 | MODELS | ComfyUI の `models` ディレクトリにマウントされる。 <br/> `checkpoint` を入れたければ `checkpoint` を、 `loras` を入れたければ `loras` ディレクトリを切る必要がある。 |
 | INPUT | ComfyUI の `input` ディレクトリにマウントされる。 |
 | OUTPUT | ComfyUI の `output` ディレクトリにマウントされる。 <br/> 生成された画像はこのディレクトリに吐き出されるということ。 |
+| DATA | ComfyUI の `user` ディレクトリにマウントされる。 <br/> ブラウザでの設定やワークフローテンプレート、ログなどを永続化するのが目的。 |
 | CUSTOM_WILDCARDS | ComfyUI Impact Pack の Impact Wildcard を想定したもの。 <br/> `custom_nodes/comfyui-impact-pack/custom_wildcards` にマウントされ、ワイルドカードファイルを配置できる。 |
 | TORCH_CUDA_ARCH_LIST |  `SageAttention` のビルドに使う環境変数。 <br/> Blackwell なら `9`, RTX 4000 シリーズなら `8.9`,  RTX 3000 シリーズなら `8.6`, RTX 2000 シリーズなら `7.5` といった具合に設定。 |
 

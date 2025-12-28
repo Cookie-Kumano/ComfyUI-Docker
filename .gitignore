@@ -3,4 +3,5 @@ custom_wildcards/**
 input/**
 models/**
 output/**
+user/**
 !**/.gitkeep
